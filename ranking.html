@@ -34,11 +34,16 @@
       margin-bottom: 20px;
     }
 
-    header h1 { margin: 0; color: #2c3e50; }
+    header h1 { 
+      margin: 0; 
+      color: #2c3e50; 
+      font-size: 2em; /* Set a base font size */
+    }
     .logo {
       width: 80px; height: 80px;
       border-radius: 50%;
       border: 3px solid #3498db;
+      flex-shrink: 0; /* Prevents the logo from shrinking */
     }
 
     .controls {
@@ -76,11 +81,12 @@
       display: flex;
       flex-direction: column;
       gap: 3px;
-      overflow-x: auto;
+      overflow-x: auto; /* This is key for responsiveness of the track */
     }
     .lane {
       position: relative;
       width: 100%;
+      min-width: 500px; /* Ensure lanes don't get too crushed on scroll */
       height: 45px;
       background: #95a5a6;
       border-top: 2px dashed rgba(255,255,255,0.5);
@@ -116,6 +122,7 @@
       opacity: 0;
       transition: opacity .3s;
       font-size: .9em;
+      z-index: 10; /* Ensure tooltip is on top */
     }
     .racer:hover .tooltip {
       visibility: visible;
@@ -136,16 +143,54 @@
       padding: 10px 20px;
       background: #ecf0f1;
       border-radius: 5px;
+      transition: background-color 0.2s;
+    }
+    footer a:hover {
+      background-color: #dfe6e9;
     }
 
-    /* —— Responsive tweaks —— */
+    /* —————— Responsive Tweaks —————— */
+    /* This section contains all the adjustments for mobile devices */
     @media (max-width: 600px) {
-      .logo { width: 50px; height: 50px; }
-      .calc-button { padding: 8px 20px; font-size: 16px; }
-      .lane { height: 35px; }
-      .racer { width: 50px; height: 25px; }
+      body {
+        padding: 10px; /* Reduce padding on small screens */
+      }
+      .container {
+        padding: 15px; /* Reduce container padding */
+      }
+      header {
+        /* Allow header to wrap if title is very long, although unlikely */
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      header h1 {
+        font-size: 1.5em; /* Make title smaller */
+        text-align: right;
+        flex-grow: 1;
+      }
+      .logo { 
+        width: 60px; /* Slightly larger than before for better balance */
+        height: 60px; 
+      }
+      .calc-button { 
+        padding: 10px 25px; 
+        font-size: 16px; 
+      }
+      .lane { 
+        height: 40px; 
+        min-width: 450px;
+      }
+      .racer { 
+        width: 50px; 
+        height: 25px; 
+      }
       .racer .tooltip {
-        width: 140px; font-size: .8em; margin-left: -70px;
+        width: 140px; 
+        font-size: .8em; 
+        margin-left: -70px;
+      }
+      .finish-line {
+        left: 60px; /* Move finish line closer to the edge */
       }
     }
   </style>
@@ -154,7 +199,7 @@
   <div class="container">
     <header>
       <h1>رده‌بندی استعداد پدرام</h1>
-      <img src="https://i.postimg.cc/hhFJVd0K/...png" alt="لوگو" class="logo">
+      <img src="https://i.postimg.cc/hhFJVd0K/20250804-1452-Little-Superhero-Costume-remix-01k1td04c3f6fs45xstkmfeb2c.png" alt="لوگو" class="logo">
     </header>
 
     <div class="controls">
@@ -163,15 +208,13 @@
 
     <div id="race-track" class="race-track">
       <div class="finish-line"></div>
-      <!-- lanes will be injected by ranking.js -->
-    </div>
+      </div>
 
     <footer>
       <a href="index.html">بازگشت به برنامه</a>
     </footer>
   </div>
 
-  <!-- this must point to your ranking.js file -->
   <script src="ranking.js"></script>
 </body>
-</html> make it responsive also the first major or car and last cant be seen
+</html>
