@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>برنامه مطالعه برای پدرام</title>
+    <link rel="icon" href="https://i.postimg.cc/hhFJVd0K/20250804-1452-Little-Superhero-Costume-remix-01k1td04c3f6fs45xstkmfeb2c.png">
+    <style>
+        /* Import B Nazanin font */
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Vazirmatn', 'B Nazanin', Nazanin, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #2c3e50;
+            margin: 0;
+            font-size: 2em;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #3498db;
+        }
+
+        .instructions {
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .instructions h3 {
+            margin-top: 0;
+            color: #34495e;
+        }
+
+        .instructions ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .instructions li {
+            display: flex;
+            align-items: center;
+        }
+
+        .color-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin-left: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .white { background-color: #ffffff; }
+        .blue { background-color: #aed6f1; }
+        .light-green { background-color: #a3e9a4; }
+        .dark-green { background-color: #73c6b6; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            table-layout: fixed;
+            word-wrap: break-word;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+            vertical-align: middle;
+            transition: background-color 0.3s ease;
+        }
+
+        th {
+            background-color: #34495e;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .subject-cell {
+            background-color: #ffffff; /* Default: white */
+        }
+
+        .subject-cell .content {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 8px;
+            min-height: 60px; /* Ensures cells have a minimum height */
+        }
+
+        .grade-input {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 8px;
+            font-family: inherit;
+        }
+        
+        .grade-label {
+            font-size: 0.9em;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #ecf0f1;
+            transition: background-color 0.3s ease;
+        }
+
+        footer a:hover {
+            background-color: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>برنامه مطالعه برای پدرام</h1>
+            <img src="https://i.postimg.cc/hhFJVd0K/20250804-1452-Little-Superhero-Costume-remix-01k1td04c3f6fs45xstkmfeb2c.png" alt="لوگو" class="logo">
+        </header>
+
+        <div class="instructions">
+            <h3>راهنما:</h3>
+            <ul>
+                <li><span class="color-box white"></span>سفید = مطالعه نشده</li>
+                <li><span class="color-box blue"></span>آبی = مطالعه شده (نمره > ۵/۱۰)</li>
+                <li><span class="color-box light-green"></span>سبز روشن = آماده برای امتحان نهایی (نمره > ۷/۱۰)</li>
+                <li><span class="color-box dark-green"></span>سبز تیره = آماده برای کنکور (نمره > ۹/۱۰)</li>
+            </ul>
+        </div>
+
+        <h2>برنامه تابستان ۱۴۰۴ - پایه دوازدهم</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>تاریخ آزمون</th>
+                    <th>حسابان ۱</th>
+                    <th>هندسه ۲</th>
+                    <th>فیزیک ۲</th>
+                    <th>آمار و احتمال</th>
+                    <th>شیمی ۲</th>
+                    <th>حسابان ۲</th>
+                    <th>هندسه ۳</th>
+                    <th>ریاضیات گسسته</th>
+                    <th>فیزیک ۳</th>
+                    <th>شیمی ۳</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ۲۰ تیر -->
+                <tr>
+                    <td>۲۰ تیر</td>
+                    <td class="subject-cell"><div class="content">جبر و معادله<br>(ص ۱ تا ۳۶)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">دایره<br>(ص ۹ تا ۲۰)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">الکتریسیته ساکن<br>(ص ۱ تا ۳۲)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">آشنایی با مبانی ریاضیات<br>(ص ۱ تا ۲۰)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">قدر هدایای زمینی<br>(ص ۱ تا ۲۵)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">تابع<br>(ص ۱ تا ۱۲)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">ماتریس و کاربردها<br>(ص ۹ تا ۱۹)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">آشنایی با نظریه اعداد<br>(ص ۱ تا ۸)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">حرکت بر خط راست<br>(ص ۱ تا ۱۳)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">مولکول‌ها در خدمت تندرستی<br>(ص ۱ تا ۱۰)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                </tr>
+                <!-- ۳ مرداد -->
+                <tr>
+                    <td>۳ مرداد</td>
+                    <td class="subject-cell"><div class="content">تابع<br>(ص ۳۷ تا ۷۰)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">دایره<br>(ص ۲۰ تا ۳۰)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">جریان الکتریکی<br>(ص ۳۲ تا ۶۱)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">احتمال<br>(ص ۲۱ تا ۴۷)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">قدر هدایای زمینی<br>(ص ۲۵ تا ۵۰)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">تابع<br>(ص ۱ تا ۱۸)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">ماتریس و کاربردها<br>(ص ۹ تا ۲۱)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">آشنایی با نظریه اعداد<br>(ص ۱ تا ۱۷)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">حرکت بر خط راست<br>(ص ۱ تا ۲۱)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">مولکول‌ها... + اسیدها و بازها<br>(ص ۱ تا ۱۶)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                </tr>
+                <!-- ۱۷ مرداد -->
+                <tr>
+                    <td>۱۷ مرداد</td>
+                    <td class="subject-cell"><div class="content">توابع نمایی و لگاریتمی<br>(ص ۷۱ تا ۹۰)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">تبدیل‌های هندسی<br>(ص ۳۱ تا ۴۳)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">جریان الکتریکی<br>(ص ۶۱ تا ۸۲)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">احتمال<br>(ص ۴۸ تا ۶۸)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">در پی غذای سالم<br>(ص ۵۱ تا ۷۷)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">تابع<br>(ص ۱ تا ۲۲)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">ماتریس و کاربردها<br>(ص ۹ تا ۲۳)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">آشنایی با نظریه اعداد<br>(ص ۱ تا ۲۲)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">حرکت بر خط راست<br>(ص ۱ تا ۲۸)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">مولکول‌ها... رسانایی الکتریکی<br>(ص ۱ تا ۱۹)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                </tr>
+                <!-- ۳۱ مرداد -->
+                <tr>
+                    <td>۳۱ مرداد</td>
+                    <td class="subject-cell"><div class="content">مثلثات<br>(ص ۹۱ تا ۱۱۳)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">تبدیل‌های هندسی<br>(ص ۴۳ تا ۵۴)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">مغناطیس<br>(ص ۸۳ تا ۱۰۸)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">آمار توصیفی<br>(ص ۶۹ تا ۹۴)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">در پی غذای سالم<br>(ص ۷۷ تا ۹۸)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">تابع + مثلثات<br>(ص ۱ تا ۳۴)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">ماتریس و کاربردها<br>(ص ۹ تا ۲۶)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">آشنایی با نظریه اعداد<br>(ص ۱ تا ۲۵)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">حرکت بر خط راست + دینامیک<br>(ص ۱ تا ۳۵)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">مولکول‌ها... تا انتهای pH<br>(ص ۱ تا ۲۸)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                </tr>
+                 <!-- ۱۴ شهریور -->
+                <tr>
+                    <td>۱۴ شهریور</td>
+                    <td class="subject-cell"><div class="content">حد و پیوستگی<br>(ص ۱۱۳ تا ۱۵۱)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">روابط طولی در مثلث<br>(ص ۵۹ تا ۷۴)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">القای الکترومغناطیسی<br>(ص ۱۰۹ تا ۱۳۰)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">آمار استنباطی<br>(ص ۹۷ تا ۱۲۱)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">پوشاک، نیازی پایان‌ناپذیر<br>(ص ۹۹ تا ۱۲۳)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">تابع + مثلثات<br>(ص ۱ تا ۴۴)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">ماتریس و کاربردها<br>(ص ۹ تا ۳۱)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">آشنایی با نظریه اعداد<br>(ص ۱ تا ۳۰)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">حرکت بر خط راست + دینامیک<br>(ص ۱ تا ۴۶)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">فصل ۱: مولکول‌ها...<br>(ص ۱ تا ۳۶)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                </tr>
+                 <!-- ۲۸ شهریور -->
+                <tr>
+                    <td>۲۸ شهریور</td>
+                    <td class="subject-cell"><div class="content">کل کتاب</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">کل کتاب</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">کل کتاب</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">کل کتاب</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">کل کتاب</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">تابع + مثلثات<br>(ص ۱ تا ۴۴)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">ماتریس و کاربردها<br>(ص ۹ تا ۳۱)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">آشنایی با نظریه اعداد<br>(ص ۱ تا ۳۰)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">حرکت بر خط راست + دینامیک<br>(ص ۱ تا ۴۶)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">فصل ۱: مولکول‌ها...<br>(ص ۱ تا ۳۶)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                </tr>
+                 <!-- ۴ مهر -->
+                <tr>
+                    <td>۴ مهر</td>
+                    <td class="subject-cell"><div class="content">کل کتاب</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">کل کتاب</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">کل کتاب</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">کل کتاب</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">کل کتاب</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">تابع + مثلثات<br>(ص ۱ تا ۴۴)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">ماتریس و کاربردها<br>(ص ۹ تا ۳۱)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">آشنایی با نظریه اعداد<br>(ص ۱ تا ۳۰)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">حرکت بر خط راست + دینامیک<br>(ص ۱ تا ۴۶)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">فصل ۱: مولکول‌ها...<br>(ص ۱ تا ۳۶)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>برنامه تابستان ۱۴۰۴ - پایه دهم (اختیاری)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>تاریخ آزمون</th>
+                    <th>ریاضی ۱</th>
+                    <th>هندسه ۱</th>
+                    <th>فیزیک ۱</th>
+                    <th>شیمی ۱</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>۳ مرداد</td>
+                    <td class="subject-cell"><div class="content">مجموعه، الگو و دنباله + مثلثات<br>(ص ۱ تا ۳۵)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">ترسیم‌های هندسی و استدلال<br>(ص ۹ تا ۲۷)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">فیزیک و اندازه‌گیری<br>(ص ۱ تا ۲۲)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">کیهان زادگاه الفبای هستی<br>(ص ۱ تا ۲۳)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                </tr>
+                <tr>
+                    <td>۱۷ مرداد</td>
+                    <td class="subject-cell"><div class="content">مثلثات + توانهای گویا<br>(ص ۳۶ تا ۶۸)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">قضیه تالس، تشابه<br>(ص ۲۸ تا ۴۴)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">ویژگی‌های فیزیکی مواد<br>(ص ۲۳ تا ۵۲)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">کیهان زادگاه الفبای هستی<br>(ص ۲۴ تا ۲۶)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                </tr>
+                 <tr>
+                    <td>۳۱ مرداد</td>
+                    <td class="subject-cell"><div class="content">معادله‌ها و نامعادله‌ها + تابع<br>(ص ۶۹ تا ۱۰۸)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">چندضلعی‌ها<br>(ص ۴۵ تا ۶۴)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">کار، انرژی و توان<br>(ص ۵۳ تا ۸۲)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">ردپای گازها در زندگی<br>(ص ۴۷ تا ۶۹)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                </tr>
+                 <tr>
+                    <td>۱۴ شهریور</td>
+                    <td class="subject-cell"><div class="content">تابع + شمارش<br>(ص ۱۰۹ تا ۱۳۲)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">چندضلعی‌ها<br>(ص ۶۵ تا ۷۳)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">دما و گرما<br>(ص ۸۳ تا ۱۲۶)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">ردپای گازها + آب<br>(ص ۷۰ تا ۹۸)</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                </tr>
+                 <tr>
+                    <td>۲۸ شهریور</td>
+                    <td class="subject-cell"><div class="content">کل کتاب</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">کل کتاب</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">کل کتاب</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                    <td class="subject-cell"><div class="content">کل کتاب</div><label class="grade-label">نمره: <input type="number" class="grade-input" min="0" max="10" step="0.1" oninput="updateColor(this)"></label></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <footer>
+            <!-- This link is a placeholder. You would create a grades.html file for it to link to. -->
+            <a href="grades.html">برو به صفحه نمرات</a>
+        </footer>
+
+    </div>
+
+    <script>
+        // This function updates the background color of a cell based on the grade entered.
+        function updateColor(inputElement) {
+            const grade = parseFloat(inputElement.value);
+            const cell = inputElement.closest('.subject-cell');
+
+            // Reset color if input is empty or not a number
+            if (isNaN(grade)) {
+                cell.style.backgroundColor = '#ffffff'; // White
+                return;
+            }
+
+            // Define grade limits
+            const konkurReadyLimit = 9;
+            const finalExamReadyLimit = 7;
+            const studiedLimit = 5;
+
+            // Apply colors based on the grade
+            if (grade >= konkurReadyLimit) {
+                cell.style.backgroundColor = '#73c6b6'; // Dark Green
+            } else if (grade >= finalExamReadyLimit) {
+                cell.style.backgroundColor = '#a3e9a4'; // Light Green
+            } else if (grade >= studiedLimit) {
+                cell.style.backgroundColor = '#aed6f1'; // Blue
+            } else {
+                cell.style.backgroundColor = '#ffffff'; // White
+            }
+        }
+    </script>
+
+</body>
+</html>
