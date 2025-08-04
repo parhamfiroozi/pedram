@@ -37,13 +37,13 @@
     header h1 { 
       margin: 0; 
       color: #2c3e50; 
-      font-size: 2em; /* Set a base font size */
+      font-size: 2em;
     }
     .logo {
       width: 80px; height: 80px;
       border-radius: 50%;
       border: 3px solid #3498db;
-      flex-shrink: 0; /* Prevents the logo from shrinking */
+      flex-shrink: 0;
     }
 
     .controls {
@@ -70,31 +70,36 @@
       transform: translateY(2px);
       box-shadow: 0 2px #c0392b;
     }
+
     .race-track {
-  position: relative;
-  width: 100%;
-  padding: 60px 0 20px; /* increased top padding from 20px to 60px */
-  background: #7f8c8d;
-  border: 5px solid #5d6d7e;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  overflow-x: auto;
-}
+      position: relative;
+      width: 100%;
+      padding: 60px 0 20px;
+      background: #7f8c8d;
+      border: 5px solid #5d6d7e;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      overflow-x: auto;
+    }
 
     .lane {
       position: relative;
       width: 100%;
-      min-width: 500px; /* Ensure lanes don't get too crushed on scroll */
+      min-width: 500px;
       height: 45px;
       background: #95a5a6;
       border-top: 2px dashed rgba(255,255,255,0.5);
     }
     .lane:first-child { border-top: none; }
 
+    /* Move finish line to the right */
     .finish-line {
-      position: absolute; left: 100px; top: 0; bottom: 0;
+      position: absolute;
+      right: 100px;
+      top: 0;
+      bottom: 0;
       width: 10px;
       background-image: repeating-linear-gradient(
         45deg, #fff 0, #fff 10px, #000 10px, #000 20px
@@ -103,7 +108,8 @@
     }
 
     .racer {
-      position: absolute; top: 5px;
+      position: absolute;
+      top: 5px;
       width: 70px; height: 35px;
       transition: right .8s cubic-bezier(.25,1,.5,1);
     }
@@ -122,7 +128,7 @@
       opacity: 0;
       transition: opacity .3s;
       font-size: .9em;
-      z-index: 10; /* Ensure tooltip is on top */
+      z-index: 10;
     }
     .racer:hover .tooltip {
       visibility: visible;
@@ -149,49 +155,17 @@
       background-color: #dfe6e9;
     }
 
-    /* —————— Responsive Tweaks —————— */
-    /* This section contains all the adjustments for mobile devices */
     @media (max-width: 600px) {
-      body {
-        padding: 10px; /* Reduce padding on small screens */
-      }
-      .container {
-        padding: 15px; /* Reduce container padding */
-      }
-      header {
-        /* Allow header to wrap if title is very long, although unlikely */
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-      header h1 {
-        font-size: 1.5em; /* Make title smaller */
-        text-align: right;
-        flex-grow: 1;
-      }
-      .logo { 
-        width: 60px; /* Slightly larger than before for better balance */
-        height: 60px; 
-      }
-      .calc-button { 
-        padding: 10px 25px; 
-        font-size: 16px; 
-      }
-      .lane { 
-        height: 40px; 
-        min-width: 450px;
-      }
-      .racer { 
-        width: 50px; 
-        height: 25px; 
-      }
-      .racer .tooltip {
-        width: 140px; 
-        font-size: .8em; 
-        margin-left: -70px;
-      }
-      .finish-line {
-        left: 60px; /* Move finish line closer to the edge */
-      }
+      body { padding: 10px; }
+      .container { padding: 15px; }
+      header { flex-wrap: wrap; gap: 10px; }
+      header h1 { font-size: 1.5em; text-align: right; flex-grow: 1; }
+      .logo { width: 60px; height: 60px; }
+      .calc-button { padding: 10px 25px; font-size: 16px; }
+      .lane { height: 40px; min-width: 450px; }
+      .racer { width: 50px; height: 25px; }
+      .racer .tooltip { width: 140px; font-size: .8em; margin-left: -70px; }
+      .finish-line { right: 60px; }
     }
   </style>
 </head>
@@ -208,7 +182,7 @@
 
     <div id="race-track" class="race-track">
       <div class="finish-line"></div>
-      </div>
+    </div>
 
     <footer>
       <a href="index.html">بازگشت به برنامه</a>
