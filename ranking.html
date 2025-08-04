@@ -33,7 +33,6 @@
       padding-bottom: 15px;
       margin-bottom: 20px;
     }
-
     header h1 { margin: 0; color: #2c3e50; }
     .logo {
       width: 80px; height: 80px;
@@ -49,7 +48,6 @@
       border-radius: 8px;
       margin-bottom: 25px;
     }
-
     .calc-button {
       padding: 12px 30px;
       background: #e74c3c;
@@ -68,16 +66,31 @@
 
     .race-track {
       position: relative;
-      width: 100%;
-      padding: 20px 0;
+      /* add horizontal padding so racers near edges are visible */
+      padding: 20px 120px;
       background: #7f8c8d;
       border: 5px solid #5d6d7e;
       border-radius: 10px;
+
+      /* allow both scrollbars if needed */
+      overflow-x: auto;
+      overflow-y: auto;
+
       display: flex;
       flex-direction: column;
       gap: 3px;
-      overflow-x: auto;
     }
+    .finish-line {
+      position: absolute;
+      left: 100px;
+      top: 0; bottom: 0;
+      width: 10px;
+      background-image: repeating-linear-gradient(
+        45deg, #fff 0, #fff 10px, #000 10px, #000 20px
+      );
+      z-index: 2;
+    }
+
     .lane {
       position: relative;
       width: 100%;
@@ -87,19 +100,12 @@
     }
     .lane:first-child { border-top: none; }
 
-    .finish-line {
-      position: absolute; left: 100px; top: 0; bottom: 0;
-      width: 10px;
-      background-image: repeating-linear-gradient(
-        45deg, #fff 0, #fff 10px, #000 10px, #000 20px
-      );
-      z-index: 2;
-    }
-
     .racer {
-      position: absolute; top: 5px;
+      position: absolute;
+      top: 5px;
       width: 70px; height: 35px;
       transition: right .8s cubic-bezier(.25,1,.5,1);
+      cursor: pointer;
     }
     .racer .tooltip {
       visibility: hidden;
@@ -139,14 +145,24 @@
     }
 
     /* —— Responsive tweaks —— */
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
+      .logo { width: 60px; height: 60px; }
+      .calc-button { padding: 10px 24px; font-size: 16px; }
+      .race-track { padding: 20px 80px; }
+      .lane { height: 40px; }
+      .racer { width: 60px; height: 30px; }
+      .racer .tooltip { width: 150px; margin-left: -75px; font-size: .8em; }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 10px; }
+      .container { padding: 15px; }
       .logo { width: 50px; height: 50px; }
-      .calc-button { padding: 8px 20px; font-size: 16px; }
-      .lane { height: 35px; }
+      .calc-button { padding: 8px 20px; font-size: 15px; }
+      .race-track { padding: 15px 60px; }
+      .lane { height: 30px; }
       .racer { width: 50px; height: 25px; }
-      .racer .tooltip {
-        width: 140px; font-size: .8em; margin-left: -70px;
-      }
+      .racer .tooltip { width: 130px; margin-left: -65px; font-size: .75em; }
     }
   </style>
 </head>
@@ -154,16 +170,19 @@
   <div class="container">
     <header>
       <h1>رده‌بندی استعداد پدرام</h1>
-      <img src="https://i.postimg.cc/hhFJVd0K/...png" alt="لوگو" class="logo">
+      <img src="https://i.postimg.cc/hhFJVd0K/20250804-1452-Little-Superhero-Costume-remix-01k1td04c3f6fs45xstkmfeb2c.png"
+           alt="لوگو" class="logo">
     </header>
 
     <div class="controls">
-      <button class="calc-button" onclick="calculateAndPlaceRacers()">مشاهده رده‌بندی</button>
+      <button class="calc-button" onclick="calculateAndPlaceRacers()">
+        مشاهده رده‌بندی
+      </button>
     </div>
 
     <div id="race-track" class="race-track">
       <div class="finish-line"></div>
-      <!-- lanes will be injected by ranking.js -->
+      <!-- lanes will be injected here by ranking.js -->
     </div>
 
     <footer>
@@ -171,7 +190,6 @@
     </footer>
   </div>
 
-  <!-- this must point to your ranking.js file -->
   <script src="ranking.js"></script>
 </body>
 </html>
