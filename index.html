@@ -454,5 +454,12 @@
             else cell.style.backgroundColor = "var(--white)";
         }
     </script>
+    <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.grade-input').forEach(input => {
+      updateColor(input);
+    });
+  });
+</script>
 </body>
 </html>
