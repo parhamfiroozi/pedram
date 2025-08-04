@@ -438,7 +438,7 @@
         <footer>
           <!-- LINK to your separate ranking.html page -->
           <a href="ranking.html" class="btn">مشاهده رده‌بندی استعداد</a>
-    <    /footer>>
+        </footer>
     </div>
 
     <script>
@@ -455,13 +455,40 @@
             else if (grade >= limits.studied) cell.style.backgroundColor = "var(--blue)";
             else cell.style.backgroundColor = "var(--white)";
         }
-    </script>
-    <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.grade-input').forEach(input => {
-      updateColor(input);
-    });
-  });
+
+        function saveGrades() {
+            const data = {};
+            document.querySelectorAll('.subject-cell').forEach(cell => {
+                const subject = cell.querySelector('.content').innerHTML.split('<br>')[0].trim();
+                const input = cell.querySelector('.grade-input');
+                if (!data[subject]) data[subject] = [];
+                if (input.value !== '') data[subject].push(input.value);
+            });
+            localStorage.setItem('pedramGrades', JSON.stringify(data));
+        }
+
+        function loadGrades() {
+            const data = JSON.parse(localStorage.getItem('pedramGrades') || '{}');
+            const counters = {};
+            document.querySelectorAll('.subject-cell').forEach(cell => {
+                const subject = cell.querySelector('.content').innerHTML.split('<br>')[0].trim();
+                const input = cell.querySelector('.grade-input');
+                counters[subject] = counters[subject] || 0;
+                if (data[subject] && data[subject][counters[subject]] !== undefined) {
+                    input.value = data[subject][counters[subject]];
+                }
+                counters[subject]++;
+                updateColor(input);
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadGrades();
+            saveGrades();
+            document.querySelectorAll('.grade-input').forEach(input => {
+                input.addEventListener('input', saveGrades);
+            });
+        });
     </script>
 </body>
 </html>
