@@ -46,30 +46,6 @@
       flex-shrink: 0;
     }
 
-    .controls {
-      display: flex;
-      justify-content: center;
-      padding: 15px;
-      background-color: #f9f9f9;
-      border-radius: 8px;
-      margin-bottom: 25px;
-    }
-
-    .calc-button {
-      padding: 12px 30px;
-      background: #e74c3c;
-      color: #fff;
-      border: none;
-      font-size: 18px;
-      border-radius: 8px;
-      cursor: pointer;
-      box-shadow: 0 4px #c0392b;
-      transition: all .3s;
-    }
-    .calc-button:active {
-      transform: translateY(2px);
-      box-shadow: 0 2px #c0392b;
-    }
 
     .race-track {
       position: relative;
@@ -161,7 +137,6 @@
       header { flex-wrap: wrap; gap: 10px; }
       header h1 { font-size: 1.5em; text-align: right; flex-grow: 1; }
       .logo { width: 60px; height: 60px; }
-      .calc-button { padding: 10px 25px; font-size: 16px; }
       .lane { height: 40px; min-width: 450px; }
       .racer { width: 50px; height: 25px; }
       .racer .tooltip { width: 140px; font-size: .8em; margin-left: -70px; }
@@ -175,10 +150,6 @@
       <h1>رده‌بندی استعداد پدرام</h1>
       <img src="https://i.postimg.cc/hhFJVd0K/20250804-1452-Little-Superhero-Costume-remix-01k1td04c3f6fs45xstkmfeb2c.png" alt="لوگو" class="logo">
     </header>
-
-    <div class="controls">
-      <button class="calc-button" onclick="calculateAndPlaceRacers()">مشاهده رده‌بندی</button>
-    </div>
 
     <div id="race-track" class="race-track">
       <div class="finish-line"></div>
