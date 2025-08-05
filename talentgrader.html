@@ -610,16 +610,36 @@
                                     <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>  
                                 </div>
                             </div>
-                            <div class="total-grade-container">
+            <div class="total-grade-container">
                                 <span class="label">نمره استعداد</span>
                                 <span class="grade-value">-</span>
                             </div>
                         </div>
-            
+
                     </div>
                 </div>
             <script>
+        // ✅ Default talent values that will be stored in localStorage
+        const initialTalentInputs = {
+            "حرکت بر خط راست": [4, 7, 9]
+            // می‌توانید در صورت نیاز، مباحث بیشتری را در اینجا اضافه کنید
+        };
+
         const savedInputs = JSON.parse(localStorage.getItem('talentInputs') || '{}');
+        const speedGrades = JSON.parse(localStorage.getItem('speedGrades') || '{}');
+
+        // Merge defaults into localStorage and compute corresponding speed grades
+        for (const [subject, values] of Object.entries(initialTalentInputs)) {
+            savedInputs[subject] = values;
+            if (values.length === 3 && values.every(v => !isNaN(v))) {
+                const sum = values.reduce((s, v) => s + v, 0);
+                const final = ((sum - 3) / 6) * 10;
+                speedGrades[subject] = final;
+            }
+        }
+
+        localStorage.setItem('talentInputs', JSON.stringify(savedInputs));
+        localStorage.setItem('speedGrades', JSON.stringify(speedGrades));
 
         document.querySelectorAll('.subject-card').forEach(card => {
             const subject = card.querySelector('h4').innerText.trim();
