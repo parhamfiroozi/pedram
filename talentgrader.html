@@ -38,7 +38,6 @@
         .criterion { display: flex; flex-direction: column; }
         .criterion label { font-size: 0.9em; margin-bottom: 5px; color: #555; }
         .static-box { padding: 8px; border: 1px solid var(--border); border-radius: 6px; text-align: center; background-color: var(--grade-bg); font-size: 1em; }
-        .grade-input { width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: 6px; text-align: center; background-color: var(--grade-bg); font-size: 1em; }
         .total-grade-container { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; background-color: var(--grade-bg); border-radius: 10px; min-width: 100px; }
         .total-grade-container .label { font-size: 0.9em; color: #666; margin-bottom: 5px; }
         .total-grade-container .grade-value { font-size: 2em; font-weight: 700; color: var(--grade-text); }
@@ -621,50 +620,22 @@
                 </div>
             <script>
         const savedInputs = JSON.parse(localStorage.getItem('talentInputs') || '{}');
-        const savedFinals = JSON.parse(localStorage.getItem('speedGrades') || '{}');
 
         document.querySelectorAll('.subject-card').forEach(card => {
             const subject = card.querySelector('h4').innerText.trim();
             const boxes = card.querySelectorAll('.static-box');
+            const values = savedInputs[subject] || [];
             boxes.forEach((box, idx) => {
-                const input = document.createElement('input');
-                input.type = 'number';
-                input.min = 1;
-                input.max = 3;
-                input.className = 'grade-input';
-                if (savedInputs[subject] && savedInputs[subject][idx] !== undefined) {
-                    input.value = savedInputs[subject][idx];
-                }
-                box.replaceWith(input);
-                input.addEventListener('input', updateGrades);
+                box.textContent = values[idx] !== undefined ? values[idx] : '-';
             });
-            if (savedFinals[subject]) {
-                card.querySelector('.grade-value').textContent = savedFinals[subject];
+            if (values.length === 3 && values.every(v => !isNaN(v))) {
+                const sum = values.reduce((s, v) => s + v, 0);
+                const final = ((sum - 3) / 6) * 10;
+                card.querySelector('.grade-value').textContent = final.toFixed(2);
+            } else {
+                card.querySelector('.grade-value').textContent = '-';
             }
         });
-
-        function updateGrades() {
-            const inputsData = {};
-            const finalGrades = {};
-            document.querySelectorAll('.subject-card').forEach(card => {
-                const subject = card.querySelector('h4').innerText.trim();
-                const inputs = card.querySelectorAll('.grade-input');
-                const values = Array.from(inputs).map(inp => parseFloat(inp.value));
-                inputsData[subject] = values;
-                if (values.every(v => !isNaN(v))) {
-                    const sum = values.reduce((s,v)=>s+v,0);
-                    const final = ((sum - 3) / 6) * 10;
-                    card.querySelector('.grade-value').textContent = final.toFixed(2);
-                    finalGrades[subject] = parseFloat(final.toFixed(2));
-                } else {
-                    card.querySelector('.grade-value').textContent = '-';
-                }
-            });
-            localStorage.setItem('talentInputs', JSON.stringify(inputsData));
-            localStorage.setItem('speedGrades', JSON.stringify(finalGrades));
-        }
-
-        updateGrades();
         </script>
             </body>
             </html>
