@@ -1,5 +1,5 @@
-// 1️⃣ Speed grades (default 0 = not set)
-const speedGrades = {
+// 1️⃣ Speed grades (defaults can be overridden by saved talent grades)
+const speedGrades = Object.assign({
   "جبر و معادله":0, "دایره":0, "الکتریسیته ساکن":0, "آشنایی با مبانی ریاضیات":0,
   "قدر هدایای زمینی":0, "تابع":0, "ماتریس و کاربردها":0, "آشنایی با نظریه اعداد":0,
   "حرکت بر خط راست":0, "مولکول‌ها در خدمت تندرستی":0, "جریان الکتریکی":0, "احتمال":0,
@@ -12,7 +12,7 @@ const speedGrades = {
   "کار، انرژی و توان":0, "ردپای گازها در زندگی":0, "تابع + شمارش":0, "دما و گرما":0,
   "ردپای گازها + آب":0, "مغناطیس":0, "توابع نمایی و لگاریتمی":0,
   "در پی غذای سالم":0, "ریاضیات گسسته":0, "محاسبات برداری":0
-};
+}, JSON.parse(localStorage.getItem('speedGrades')||'{}'));
 
 // 2️⃣ Major → subject-weight & color
 const majorConfig = {
