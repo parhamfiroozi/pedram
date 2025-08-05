@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ارزیابی استعداد و علاقه پدرام</title>
+    <link rel="icon" href="https://i.postimg.cc/hhFJVd0K/20250804-1452-Little-Superhero-Costume-remix-01k1td04c3f6fs45xstkmfeb2c.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+        :root {
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --primary: #3498db;
+            --header-color: #2c3e50;
+            --text-color: #333;
+            --border: #e0e0e0;
+            --dark-header: #34495e;
+            --grade-bg: #ecf0f1;
+            --grade-text: #2c3e50;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Vazirmatn', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.7; font-size: 16px; }
+        .container { max-width: 900px; margin: 20px auto; padding: 20px; }
+        header { text-align: center; margin-bottom: 25px; }
+        header h1 { color: var(--header-color); font-size: 2.2em; margin-bottom: 10px; }
+        header p { font-size: 1.1em; color: #555; }
+        .instructions { padding: 15px 20px; margin-bottom: 20px; border-radius: 12px; background-color: var(--card-bg); box-shadow: 0 4px 15px rgba(0,0,0,0.07); border-left: 5px solid var(--primary); }
+        .instructions h3 { margin-bottom: 10px; color: var(--dark-header); font-size: 1.3em; }
+        .instructions ul { list-style: '✓  ' inside; padding-right: 20px; }
+        .instructions li { margin-bottom: 8px; }
+        .subjects-container { display: grid; gap: 20px; max-height: 70vh; overflow-y: auto; padding-right: 10px; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+        .subjects-container::-webkit-scrollbar { width: 8px; }
+        .subjects-container::-webkit-scrollbar-track { background: transparent; }
+        .subjects-container::-webkit-scrollbar-thumb { background-color: var(--border); border-radius: 4px; }
+        .subject-card { background-color: var(--card-bg); border-radius: 12px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.07); display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 20px; }
+        .subject-info h4 { font-size: 1.2em; color: var(--header-color); margin-bottom: 15px; }
+        .criteria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 15px; }
+        .criterion { display: flex; flex-direction: column; }
+        .criterion label { font-size: 0.9em; margin-bottom: 5px; color: #555; }
+        .static-box { padding: 8px; border: 1px solid var(--border); border-radius: 6px; text-align: center; background-color: var(--grade-bg); font-size: 1em; }
+        .total-grade-container { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; background-color: var(--grade-bg); border-radius: 10px; min-width: 100px; }
+        .total-grade-container .label { font-size: 0.9em; color: #666; margin-bottom: 5px; }
+        .total-grade-container .grade-value { font-size: 2em; font-weight: 700; color: var(--grade-text); }
+        @media (max-width: 768px) { .subject-card { grid-template-columns: 1fr; } .total-grade-container { width: 100%; padding: 10px; } }
+        @media (max-width: 480px) { body { font-size: 14px; } .criteria-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ارزیابی جامع استعداد و علاقه</h1>
+            <p>نمایش ثابت نمرات، با امکان پیمایش عمودی برای مشاهده همه مباحث.</p>
+        </header>
+        <div class="instructions">
+            <h3>راهنما:</h3>
+            <ul>
+                <li>🧠 درک اولیه: نمره ۱ تا ۳</li>
+                <li>🚀 سرعت یادگیری: نمره ۱ تا ۳</li>
+                <li>❤️ علاقه و اشتیاق: نمره ۱ تا ۳</li>
+                <li>نمره نهایی استعداد: ((جمع سه نمره - ۳) / ۶) * ۱۰</li>
+            </ul>
+        </div>
+        <div id="subjects-container" class="subjects-container">
+            <!-- Static cards for all subjects -->
+            <div class="subject-card">
+                <div class="subject-info">
+                    <h4>جبر و معادله</h4>
+                    <div class="criteria-grid">
+                        <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                        <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                        <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                    </div>
+                </div>
+                <div class="total-grade-container"><span class="label">نمره استعداد</span><span class="grade-value">-</span></div>
+            </div>
+            <div class="subject-card">
+                <div class="subject-info">
+                    <h4>دایره</h4>
+                    <div class="criteria-grid">
+                        <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                        <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                        <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                    </div>
+                </div>
+                <div class="total-grade-container"><span class="label">نمره استعداد</span><span class="grade-value">-</span></div>
+            </div>
+            <div class="subject-card">
+                <div class="subject-info">
+                    <h4>الکتریسیته ساکن</h4>
+                    <div class="criteria-grid">
+                        <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                        <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                        <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                    </div>
+                </div>
+                <div class="total-grade-container"><span class="label">نمره استعداد</span><span class="grade-value">-</span></div>
+            </div>
+            <div class="subject-card">
+                <div class="subject-info">
+                    <h4>آشنایی با مبانی ریاضیات</h4>
+                    <div class="criteria-grid">
+                        <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                        <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                        <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                    </div>
+                </div>
+                <div class="total-grade-container"><span class="label">نمره استعداد</span><span class="grade-value">-</span></div>
+                    </div>
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>قدر هدایای زمینی</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>تابع</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>ماتریس و کاربردها</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>آشنایی با نظریه اعداد</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>حرکت بر خط راست</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>مولکول‌ها در خدمت تندرستی</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>جریان الکتریکی</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>احتمال</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>اسیدها و بازها</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>رسانایی الکتریکی</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>مثلثات</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>حد و پیوستگی</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>تبدیل‌های هندسی</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>روابط طولی در مثلث</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>آمار توصیفی</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>آمار استنباطی</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>پوشاک، نیازی پایان‌ناپذیر</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>دینامیک</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>القای الکترومغناطیسی</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>مجموعه، الگو و دنباله + مثلثات</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>ترسیم‌های هندسی و استدلال</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>فیزیک و اندازه‌گیری</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>کیهان زادگاه الفبای هستی</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <dup class="subject-info">
+                                <h4>قضیه تالس، تشابه</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </dup>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>ویژگی‌های فیزیکی مواد</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>معادله‌ها و نامعادله‌ها + تابع</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>چندضلعی‌ها</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>کار، انرژی و توان</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>ردپای گازها در زندگی</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>  
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>تابع + شمارش</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>  
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+                        
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>دما و گرما</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>  
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>ردپای گازها + آب</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>  
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+                        
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>مغناطیس</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>  
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                        <div class="subject-card">
+                            <div class="subject-info">
+                                <h4>توابع نمایی و لگاریتمی</h4>
+                                <div class="criteria-grid">
+                                    <div class="criterion"><label>🧠 درک اولیه</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>🚀 سرعت یادگیری</label><div class="static-box">-</div></div>
+                                    <div class="criterion"><label>❤️ علاقه و اشتیاق</label><div class="static-box">-</div></div>  
+                                </div>
+                            </div>
+                            <div class="total-grade-container">
+                                <span class="label">نمره استعداد</span>
+                                <span class="grade-value">-</span>
+                            </div>
+                        </div>
+            
+                    </div>
+                </div>
+            </body>
+            </html>
+            
