@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>امتحان ۱۷ مرداد</title>
+  <!-- Chart.js و MathJax -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    @font-face { font-family:'B Nazanin'; src:url('fonts/B_Nazanin.ttf') format('truetype'); }
+    *,*::before,*::after{box-sizing:border-box}
+    body,html{margin:0;padding:0;font-family:'B Nazanin',sans-serif;background:#f9f9f9;color:#333}
+    header,footer{text-align:center;background:#005f73;color:#fff;padding:1rem}
+    nav{background:#0a9396;display:flex;flex-wrap:wrap;justify-content:center;padding:.5rem}
+    nav a{color:#fff;margin:.25rem;padding:.5rem 1rem;text-decoration:none;font-weight:bold;border-radius:.25rem;transition:background .3s}
+    nav a:hover{background:rgba(255,255,255,0.2)}
+    main{width:90%;max-width:1000px;margin:2rem auto;padding:1rem;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.1);border-radius:.5rem}
+    section{margin-bottom:2rem}
+    section h2{color:#005f73;margin-top:0}
+    ol,ul{padding-inline-start:1.5rem}
+    img,canvas{max-width:100%;height:auto;display:block;margin:1rem auto}
+    @media(max-width:600px){nav{flex-direction:column}nav a{width:100%;text-align:center}}
+  </style>
+</head>
+<body>
+  <header><h1>امتحان ۱۷ مرداد</h1></header>
+  <nav>
+    <a href="#section1">حسابان</a>
+    <a href="#section2">انتقال ترکیبی</a>
+    <a href="#section3">دامنه و برد</a>
+    <a href="#section4">ماتریس قطری</a>
+    <a href="#section5">مثال ماتریس‌ها</a>
+    <a href="#section6">مثال a<sub>ij</sub></a>
+    <a href="#section7">نمودار مورچه</a>
+    <a href="#section8">مسئله مکان–زمان</a>
+    <a href="#section9">دو خودرو</a>
+    <a href="#section10">نمودار سرعت–زمان</a>
+  </nav>
+  <main>
+    <section id="section1">
+      <h2>حسابان</h2>
+      <p>1. انتقال افقی و عمودی</p>
+      <p>تابع پایه \(f(x)=2x-1\) را در نظر بگیرید.</p>
+      <ol type="a">
+        <li>معادله‌ی \(g(x)\) که ابتدا ۳ واحد به راست و ۴ واحد به بالا شیفت کرده باشد.</li>
+        <li>موقعیت رأس تابع \(g\).</li>
+        <li>شیب و عرض از مبدأ تابع \(g\).</li>
+      </ol>
+    </section>
+    <section id="section2">
+      <h2>انتقال ترکیبی</h2>
+      <p>2. انتقال ترکیبی</p>
+      <p>تابع \(h(x)=5x+2\).</p>
+      <ol type="a">
+        <li>معادله‌ی \(k(x)\) پس از انتقال ۲ واحد چپ و ۵ واحد پایین.</li>
+      </ol>
+    </section>
+    <section id="section3">
+      <h2>دامنه و برد</h2>
+      <p>3. دامنه و برد</p>
+      <p>تابع:</p>
+      \[ f(x)=\frac{x-1}{x^2-4} \]
+      <ol type="a">
+        <li>دامنه‌ی تابع را بیابید.</li>
+      </ol>
+    </section>
+    <section id="section4">
+      <h2>ماتریس قطری</h2>
+      \[ A=\begin{bmatrix}2 & a-1 \\
+                         3b & 1\end{bmatrix},\quad
+         B=\begin{bmatrix}1 & -2 \\
+                         3 & 2\end{bmatrix} \]
+      <p>اگر \(AB\) قطری باشد، مقدار \(a+b\) چیست؟</p>
+      <ol>
+        <li>\(-2\)</li>
+        <li>\(3\)</li>
+        <li>\(2\)</li>
+        <li>\(4\)</li>
+      </ol>
+    </section>
+    <section id="section5">
+      <h2>مثال: ماتریس‌ها</h2>
+      \[ A=\begin{bmatrix}x-y & 9 \\
+                         2 & z-1\end{bmatrix},\quad
+         B=\begin{bmatrix}3 & x+y \\
+                         2 & 5\end{bmatrix} \]
+      <p>مقدار \(x+y+z\) را بیابید.</p>
+    </section>
+    <section id="section6">
+      <h2>مثال: ماتریس‌های \(a_{ij}\)</h2>
+      <p>صورت سؤال را در تصویر زیر مشاهده کنید:</p>
+      <img src="https://i.postimg.cc/B64ChCNp/photo-6012640132487824138-y.jpg" alt="سؤال ماتریس‌های a_{ij}">
+    </section>
+    <section id="section7">
+      <h2>مکان–زمان مورچه</h2>
+      <canvas id="antChart"></canvas>
+      <script>
+        const ctx = document.getElementById('antChart').getContext('2d');
+        new Chart(ctx, { type:'scatter', data:{datasets:[{data:[{x:0,y:0},{x:2,y:4},{x:5,y:4},{x:8,y:2},{x:10,y:6},{x:12,y:6}],showLine:true,borderColor:'blue',tension:0,pointRadius:5,pointBackgroundColor:'red'}]}, options:{parsing:false,scales:{x:{title:{display:true,text:'t (s)'},ticks:{stepSize:1}},y:{title:{display:true,text:'x (cm)'},ticks:{stepSize:1}}},plugins:{legend:{display:false}}} });
+      </script>
+      <ol type="a">
+        <li>بازه با سرعت مثبت؟</li>
+        <li>بازه با سرعت منفی؟</li>
+        <li>بازه سکون؟</li>
+        <li>جابجایی کل از 0 تا 12.</li>
+        <li>میانگین سرعت از 0 تا 12.</li>
+      </ol>
+    </section>
+    <section id="section8">
+      <h2>مسئله مکان–زمان 121</h2>
+      <p>متحرکی ابتدا ۵m را در ۸s و سپس ۴۰m را در خلاف جهت اولیه در ۱۰s طی می‌کند. نسبت شتاب متوسط به سرعت متوسط را بیابید.</p>
+    </section>
+    <section id="section9">
+      <h2>دو خودرو 123</h2>
+      <p>دو خودرو A و B در فاصله ۱km با سرعت‌های ۲۰m/s و ۳۰m/s حرکت می‌کنند. پس از چند ثانیه فاصله آن‌ها دوباره ۳۰۰m می‌شود؟</p>
+    </section>
+    <section id="section10">
+      <h2>نمودار سرعت–زمان 104</h2>
+      <img src="https://i.postimg.cc/Mp2yGDRD/photo-6043942919292965071-y.jpg" alt="سرعت-زمان 1">
+      <img src="https://i.postimg.cc/yxRyfrcD/photo-6043942919292965075-y.jpg" alt="سرعت-زمان 2">
+    </section>
+  </main>
+  <footer><p>© ۲۰۲۵ نام شرکت شما.</p></footer>
+</body>
+</html>
