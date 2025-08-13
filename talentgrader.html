@@ -574,7 +574,9 @@ function saveAll(savedInputs, speedGrades) {
 
     // Initialize each card: prefer storage; otherwise read from DOM; then compute & persist
     document.querySelectorAll('.subject-card').forEach(card => {
-      const subject = card.querySelector('h4')?.innerText.trim();
+      const subjectEl = card.querySelector('h4');
+      if (!subjectEl) return;
+      const subject = subjectEl.innerText.trim();
       const boxes = card.querySelectorAll('.static-box');
       const gradeEl = card.querySelector('.grade-value');
 
@@ -607,7 +609,9 @@ function saveAll(savedInputs, speedGrades) {
 
     // Live update on edit
     function recalcAndSave(card) {
-      const subject = card.querySelector('h4')?.innerText.trim();
+      const subjectEl = card.querySelector('h4');
+      if (!subjectEl) return;
+      const subject = subjectEl.innerText.trim();
       const boxes = card.querySelectorAll('.static-box');
       const gradeEl = card.querySelector('.grade-value');
 
