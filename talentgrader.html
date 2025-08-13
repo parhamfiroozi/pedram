@@ -530,19 +530,40 @@
   </div>
 
   <script>
-    // --- utilities ---
-    function parseNum(text) {
-      const t = String(text || '').trim().replace(',', '.');
-      const n = parseFloat(t);
-      return Number.isFinite(n) ? n : null;
-    }
-    function numbersValid(arr) {
-      return Array.isArray(arr) && arr.length === 3 && arr.every(v => Number.isFinite(v));
-    }
-    function saveAll(savedInputs, speedGrades) {
-      localStorage.setItem('talentInputs', JSON.stringify(savedInputs));
-      localStorage.setItem('speedGrades', JSON.stringify(speedGrades));
-    }
+  // --- utilities (robust RTL/Arabic numerals) ---
+function toLatinDigitsAndSeparators(str) {
+  const fa = '۰۱۲۳۴۵۶۷۸۹';
+  const ar = '٠١٢٣٤٥٦٧٨٩';
+  return String(str || '')
+    .replace(/[۰-۹٠-٩]/g, d => {
+      const iFa = fa.indexOf(d);
+      if (iFa > -1) return String(iFa);
+      const iAr = ar.indexOf(d);
+      if (iAr > -1) return String(iAr);
+      return d;
+    })
+    // Arabic decimal separator (٫ U+066B) -> dot
+    .replace(/\u066B/g, '.')
+    // Arabic thousands separator (٬ U+066C) and regular thousands comma -> remove
+    .replace(/\u066C/g, '')
+    .replace(/[,٬]/g, '');
+}
+
+function parseNum(text) {
+  const t = toLatinDigitsAndSeparators(text).trim();
+  const n = parseFloat(t);
+  return Number.isFinite(n) ? n : null;
+}
+
+function numbersValid(arr) {
+  return Array.isArray(arr) && arr.length === 3 && arr.every(v => Number.isFinite(v));
+}
+
+function saveAll(savedInputs, speedGrades) {
+  localStorage.setItem('talentInputs', JSON.stringify(savedInputs));
+  localStorage.setItem('speedGrades', JSON.stringify(speedGrades));
+}
+
 
     // --- load previous state ---
     const savedInputs = JSON.parse(localStorage.getItem('talentInputs') || '{}');
