@@ -552,7 +552,9 @@ function toLatinDigitsAndSeparators(str) {
 function parseNum(text) {
   const t = toLatinDigitsAndSeparators(text).trim();
   const n = parseFloat(t);
-  return Number.isFinite(n) ? n : null;
+  if (!Number.isFinite(n)) return null;
+  // restrict values to the 1-3 range
+  return Math.max(1, Math.min(3, n));
 }
 
 function numbersValid(arr) {
